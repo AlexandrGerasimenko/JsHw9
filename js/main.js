@@ -25,7 +25,8 @@ function typeMessage ( message, velocity ) {
       var timerId = setTimeout(function showMessage() {
         setTimeout(showMessage, velocity * 1000);
         index++;
-        if(index > message.length) {null} else
+        if(index > message.length)
+           {null} else
         {
          container.innerText = message.substring(0, index);
         }
@@ -96,7 +97,6 @@ var users = (
       return {
           setUserPresent ( userName, present ) {
             for (var user of users) {
-              // userName === user.name ? console.log(1) : console.log(2);
               userName === user.name && (present === '+' || "присутствовал"  || present ===  true) ? user.present = true : null;
               
               
@@ -152,16 +152,22 @@ border: solid 5px white;
 elem.className = !(num % 2) ? "Even": "second-level-menu";
 num--;
 num < 1 ? null : square(num)
-
 }
 square(5)
 
+let changeClass = ( classname, styleString ) => ( Array.from ( document.styleSheets )
+    .filter ( sheet => !sheet.href )
+        .map (
+            sheet => Array.from ( sheet.cssRules )
+                    .filter ( rule => rule.selectorText === `.{classname}` )
+        )
+           .filter ( item => item.length > 0 )
+               .map ( item => item[0].cssText.split ("}")
+                           .join ( `${styleString}}` )
+               )
+).length > 0 ? console.log ( "found" ) : 
+    document.head.appendChild (
+        document.createElement ( "style" )
+    ).textContent = `.${classname} {${styleString}}`
 
-// let changeClass = ( classname, styleString ) => ( 
-  
-// ).length > 0 ? console.log ( "found" ) : 
-//    document.head.appendChild (
-//        document.createElement ( "style" )
-//    ).textContent = `.${classname} {${styleString}}`
-
-//    changeClass ( "second-level-menu", "background-color: red!important;" )
+changeClass ( "second-level-menu", "background-color: red!important;" )
